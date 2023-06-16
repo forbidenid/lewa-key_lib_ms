@@ -11,10 +11,8 @@ class GoogleSearch(object):
     def process_exception(self, request, exception):
 
 
-        # to search
         query = u'{}: {}'.format(exception.__class__.__name__, str(exception))
 
-        #j=list(search(query, tld="co.in", num=1, stop=1, pause=2))
         j=query
         print(j)
         import webbrowser

@@ -2,13 +2,10 @@ from django.shortcuts import render, redirect
 
 from .models import *
 from .forms import *
-# .FORMS REFERS TO THE FORMS.PY IN CURRENT DIRECTORY AND * USED FOR IMPORTING EVERYTHING
-
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 import datetime
 
-# HOME PAGE
 def index(request):
     return render(
         request,
@@ -16,10 +13,8 @@ def index(request):
     )
 
 
-# VIEW THAT WILL RETURN LIST OF ALL BOOKS IN LIBRARY
 def BookListView(request):
     book_list = Book.objects.all()
-    # MODELNAME.objects.all() is used to get all objects i.e. tuples from database
     return render(request, 'catalog/book_list.html', locals())
 
 @login_required
@@ -29,13 +24,7 @@ def student_BookListView(request):
     book_list=[]
     for b in bor:
         book_list.append(b.book)
-    # MODELNAME.objects.all() is used to get all objects i.e. tuples from database
     return render(request, 'catalog/book_list.html', locals())
-
-#This view return detail of a particular book
-#it also accepts a parameter pk that is the id  i.e. primary_key of book to identify it
-#get_object_404 if object is not found then return 404 server error
-#locals return a dictionary of loacl varibles
 def BookDetailView(request, pk):
     book = get_object_or_404(Book, id=pk)
     reviews=Reviews.objects.filter(book=book).exclude(review="none")
@@ -202,10 +191,10 @@ def get_query(query_string, search_fields):
         aims to search keywords within a model by testing the given search fields.
 
     '''
-    query = None # Query to search for every search term
+    query = None 
     terms = normalize_query(query_string)
     for term in terms:
-        or_query = None # Query to search for a given term in each field
+        or_query = None 
         for field_name in search_fields:
             q = Q(**{"%s__icontains" % field_name: term})
             if or_query is None:
