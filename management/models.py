@@ -13,8 +13,7 @@ class Genre(models.Model):
 
 ##relation containing category of books
 class Category(models.Model):
-    name = models.CharField(max_length=200,
-                            help_text="Enter the book's natural category (e.g. English, French, Japanese etc.)")
+    name = models.CharField(max_length=200, help_text="Enter the book's natural category (e.g. English, French, Japanese etc.)")
 
     def __str__(self):
         return self.name
@@ -28,11 +27,11 @@ class Book(models.Model):
     isbn = models.CharField('ISBN', max_length=13,
                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
-    category = models.ForeignKey('category', on_delete=models.SET_NULL, null=True)
+    category = models.ManyToManyField(Category, help_text="Select a category for this book")
     publisher = models.CharField(max_length=150)
     total_copies = models.IntegerField()
     available_copies = models.IntegerField()
-    pic=models.ImageField(blank=True, null=True, upload_to='book_image')
+    pic=models.ImageField(blank=False, null=False, upload_to='book_image')
 
 class publisher(models.Model):
     publisher = models.CharField(max_length=150)
