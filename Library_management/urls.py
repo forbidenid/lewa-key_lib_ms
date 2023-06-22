@@ -47,7 +47,7 @@ urlpatterns = [
     path('return/<int:pk>', views.ret, name='ret'),
     path('rating/<int:pk>/update/', views.RatingUpdate, name='rating_update'),
     path('rating/<int:pk>/delete/', views.RatingDelete, name='rating_delete'),
-
+    
 re_path(r'^search_b/', views.search_book, name="search_b"),
 re_path(r'^search_s/', views.search_student, name="search_s"),
 path('accounts/', include('django.contrib.auth.urls')),
