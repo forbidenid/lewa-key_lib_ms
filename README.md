@@ -5,6 +5,7 @@ First clone the repo in your local machine
 ```
 git clone https://github.com/root-codes/lewa-key_lib_ms
 ```
+change from your current working directory to the projects working directory
 
 ```
 cd lewa-key_lib_ms
