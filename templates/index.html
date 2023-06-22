@@ -119,20 +119,6 @@
           </li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
-        {% if user.is_superuser %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'student_create' %}">Add Student</a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'book_create' %}">Add Book</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'student_list' %}">StudentList</a>
-                    </li>
-
-                {% endif %}
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
