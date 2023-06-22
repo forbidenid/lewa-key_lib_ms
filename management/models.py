@@ -11,15 +11,15 @@ class Genre(models.Model):
 ##  __str__ method is used to override default string returnd by an object
 
 
-##relation containing language of books
-class Language(models.Model):
+##relation containing category of books
+class Category(models.Model):
     name = models.CharField(max_length=200,
-                            help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)")
+                            help_text="Enter the book's natural category (e.g. English, French, Japanese etc.)")
 
     def __str__(self):
         return self.name
 
-#book relation that has 2 foreign key author language
+#book relation that has 2 foreign key author category
 #book relation can contain multiple genre so we have used manytomanyfield
 class Book(models.Model):
     title = models.CharField(max_length=200)
@@ -28,11 +28,15 @@ class Book(models.Model):
     isbn = models.CharField('ISBN', max_length=13,
                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
-    language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
-    publishet = models.CharField(max_length=150)
+    category = models.ForeignKey('category', on_delete=models.SET_NULL, null=True)
+    publisher = models.CharField(max_length=150)
     total_copies = models.IntegerField()
     available_copies = models.IntegerField()
     pic=models.ImageField(blank=True, null=True, upload_to='book_image')
+
+class publisher(models.Model):
+    publisher = models.CharField(max_length=150)
+
 
 #return canonical url for an object
     def get_absolute_url(self):
