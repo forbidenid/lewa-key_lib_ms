@@ -1,6 +1,6 @@
 # LIBRARY MANAGEMENT SYSTEM IMPLEMENTED IN PYTHON DJANGO
 
-## iNSTALATION 
+## INSTALATION 
 First clone the repo in your local machine
 ```
 git clone https://github.com/root-codes/lewa-key_lib_ms
