@@ -10,9 +10,14 @@ git clone https://github.com/root-codes/lewa-key_lib_ms
 cd lewa-key_lib_ms
 ```
 
-Now open vscode
+Now open vscode and install the requirements
 
 ```
-pip install django
+pip install -r requirements.txt
+```
+Now run the development server
+
+```
+python manage.py runserver
 ```
 
