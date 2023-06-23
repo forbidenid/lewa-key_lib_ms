@@ -1,0 +1,430 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>KEY | lewa primary</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static '/assets/img/favicon.png" rel="icon">
+  <link href="{% static '/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static '/assets/vendor/animate.css' %}/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">KEY</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="{% static '/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="images.html">Gallery</a></li>
+          <li><a href="events.html">Activities</a></li>
+
+          <li class="dropdown"><a href="#"><span>Catalogue</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li class="dropdown"><a href="#"><span>Non fiction</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Famous People</a></li>
+                  <li><a href="#">True Stories</a></li>
+                  <li><a href="#">Fact Concept</a></li>
+                  <li><a href="#">Teachers</a></li>
+                  <li><a href="#">Animals</a></li>
+                  <li><a href="#">Geography</a></li>
+                  <li><a href="#">Nature</a></li>
+                  <li><a href="#">History</a></li>
+                  <li><a href="#">Enviroment</a></li>
+                </ul>
+              <li class="dropdown"><a href="#"><span>Fiction</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">African Stories</a></li>
+                  <li><a href="#">Fantasy</a></li>
+                  <li><a href="#">Friendship</a></li>
+                  <li><a href="#">Adventure</a></li>
+                  <li><a href="#">Mystry</a></li>
+                  <li><a href="#">Funny</a></li>
+                  <li><a href="#">Scary</a></li>
+                  <li><a href="#">Myths</a></li>
+                  <li><a href="#">Early Readers</a></li>
+                </ul>
+              <li class="dropdown"><a href="#"><span>Reference</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Science</a></li>
+                  <li><a href="#">Geography</a></li>
+                  <li><a href="#">Languages</a></li>
+                  <li><a href="#">Poetry</a></li>
+                  <li><a href="#">Mathematics</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'books' %}">Books</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+        </li>
+
+
+
+        {% if user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'student_create' %}">Add Student</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'book_create' %}">Add Book</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'student_list' %}">StudentList</a>
+            </li>
+
+        {% endif %}
+        </li>
+            {% if user.is_authenticated %}
+<div class="dropdown float">
+<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+{{ request.user }}
+</button>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="{% url 'book_student' %}">ISSUED_BOOK</a>
+<a class="dropdown-item" href="{% url 'password_reset' %}">Reset Password</a>
+<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+</div>
+</div>
+                 {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+{% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Knowledge,<br>Empowering Youth</h1>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Students</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="1549" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Books</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Events</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Trainers</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    
+
+    <section id="popular-courses" class="courses">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Books</h2>
+          <p>Popular Books</p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item">
+              <img src="{% static '/assets/img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4>Web Development</h4>
+                  <p class="price">$169</p>
+                </div>
+
+                <h3><a href="course-details.html">Website Design</a></h3>
+                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static '/assets/img/trainers/trainer-1.jpg' %}" class="img-fluid" alt="">
+                    <span>Antonio</span>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bx bx-user"></i>&nbsp;50
+                    &nbsp;&nbsp;
+                    <i class="bx bx-heart"></i>&nbsp;65
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="course-item">
+              <img src="{% static '/assets/img/course-2.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4>Marketing</h4>
+                  <p class="price">$250</p>
+                </div>
+
+                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
+                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static '/assets/img/trainers/trainer-2.jpg' %}" class="img-fluid" alt="">
+                    <span>Lana</span>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bx bx-user"></i>&nbsp;35
+                    &nbsp;&nbsp;
+                    <i class="bx bx-heart"></i>&nbsp;42
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="course-item">
+              <img src="{% static '/assets/img/course-3.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4>Content</h4>
+                  <p class="price">$180</p>
+                </div>
+
+                <h3><a href="course-details.html">Copywriting</a></h3>
+                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static '/assets/img/trainers/trainer-3.jpg' %}" class="img-fluid" alt="">
+                    <span>Brandon</span>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bx bx-user"></i>&nbsp;20
+                    &nbsp;&nbsp;
+                    <i class="bx bx-heart"></i>&nbsp;85
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+        </div>
+
+      </div>
+    </section><!-- End Popular Courses Section -->
+
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{% static '/assets/img/trainers/trainer-1.jpg' %}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Walter White</h4>
+                <span>Web Development</span>
+                <p>
+                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{% static '/assets/img/trainers/trainer-2.jpg' %}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Sarah Jhinson</h4>
+                <span>Marketing</span>
+                <p>
+                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{% static '/assets/img/trainers/trainer-3.jpg' %}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>William Anderson</h4>
+                <span>Content</span>
+                <p>
+                  Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Trainers Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Mentor</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>KEY</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="https://root-codes.netlify.app/">roOT</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static '/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static '/assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
