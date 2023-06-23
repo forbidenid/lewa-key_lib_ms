@@ -33,7 +33,7 @@ class Book(models.Model):
     available_copies = models.IntegerField()
     pic=models.ImageField(blank=False, null=False, upload_to='book_image')
 
-class publisher(models.Model):
+class Publisher(models.Model):
     publisher = models.CharField(max_length=150)
 
 

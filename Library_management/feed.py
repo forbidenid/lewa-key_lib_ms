@@ -3,7 +3,7 @@ from django.urls import reverse
 from management.models import Book
 
 class LatestEntriesFeed(Feed):
-    title = "E-Library"
+    title = "KEY Libraries"
     link = "/feed/"
     description = "Following are latest book avialable."
 
