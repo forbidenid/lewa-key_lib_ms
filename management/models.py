@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 class Genre(models.Model):
     name = models.CharField(max_length=200, help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)")
 
+
     def __str__(self):
         return self.name
 ##  __str__ method is used to override default string returnd by an object
@@ -14,6 +15,9 @@ class Genre(models.Model):
 ##relation containing category of books
 class Category(models.Model):
     name = models.CharField(max_length=200, help_text="Enter the book's natural category (e.g. English, French, Japanese etc.)")
+    class Meta:
+        ordering = ('name',)
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.name

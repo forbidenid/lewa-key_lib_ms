@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{% static '/assets/vendor/animate.css' %}/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/vendor/animate.css' %}" rel="stylesheet">
   <link href="{% static '/assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
@@ -85,10 +85,43 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'books' %}">Books</a>
         </li>
-
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-        </li>
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+      </li>
+
+
+
+      {% if user.is_superuser %}
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'student_create' %}">Add Student</a>
+          </li>
+
+
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'book_create' %}">Add Book</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'student_list' %}">StudentList</a>
+          </li>
+
+      {% endif %}
+      </li>
+          {% if user.is_authenticated %}
+<div class="dropdown float">
+<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+{{ request.user }}
+</button>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="{% url 'book_student' %}">ISSUED_BOOK</a>
+<a class="dropdown-item" href="{% url 'password_reset' %}">Reset Password</a>
+<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+</div>
+</div>
+               {% else %}
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+{% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -121,7 +154,7 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Mentor</h3>
+            <h3>KEY</h3>
             <p>
               A108 Adam Street <br>
               New York, NY 535022<br>
